@@ -17,8 +17,8 @@ RUN pip install --no-cache-dir --upgrade pip && \
 
 COPY whisper-v4.py .
 
-# Define porta padrão
+# Exponha a porta (opcional, só pra documentação)
 EXPOSE 8000
 
-# Comando de inicialização
-CMD ["uvicorn", "whisper-v4:app", "--host", "0.0.0.0", "--port", "8000"]
+# Comando de inicialização via Python
+CMD ["python", "whisper-v4.py"]

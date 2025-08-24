@@ -1,4 +1,3 @@
-# whisper-v3.py
 import io
 import os
 import tempfile
@@ -22,14 +21,16 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Rota de saúde para Render
+@app.get("/")
+def health_check():
+    return {"status": "ok"}
+
 # Cache de modelos
 _loaded_models: Dict[str, Dict[str, Any]] = {}
 
 def get_model(model_size: str, device: str = "cpu"):
-    """
-    Carrega o modelo Whisper e limpa o cache anterior.
-    """
-    _loaded_models.clear()  # Limpa cache para evitar sobrecarga
+    _loaded_models.clear()
     key = (model_size or "base").lower()
     model = whisper.load_model(key)
 
@@ -165,3 +166,9 @@ async def transcribe(
         media_type="text/plain; charset=utf-8",
         headers={"Content-Disposition": f'attachment; filename="{base_name}.txt"'},
     )
+
+# Inicialização para Render
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("whisper-v4:app", host="0.0.0.0", port=port)
