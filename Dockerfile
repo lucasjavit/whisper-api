@@ -21,4 +21,4 @@ COPY whisper-v4.py .
 EXPOSE 8000
 
 # Comando de inicialização
-CMD ["uvicorn", "whisper-v3:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "whisper-v4:app", "--host", "0.0.0.0", "--port", "8000"]
