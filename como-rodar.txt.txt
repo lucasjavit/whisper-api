@@ -1,0 +1,20 @@
+# criar virtualenv (se ainda não tiver)
+python -m venv venv
+
+# ativar
+venv\Scripts\activate
+
+# atualizar pip
+python -m pip install --upgrade pip
+
+# instalar requirements
+pip install -r requirements.txt
+
+pip install soundfile
+
+
+
+run
+uvicorn whisper-v4:app --reload
+
+No angular 20 não tem ngif e não foi gerado o .component somente transcribe
