@@ -16,7 +16,7 @@ app = FastAPI(title="Whisper API - chunked")
 # ajusta CORS para seu front-end (Angular)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:4200"],  # ajuste em produção
+    allow_origins=["*"],  # ajuste em produção
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
