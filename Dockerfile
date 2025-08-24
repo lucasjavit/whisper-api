@@ -15,7 +15,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-COPY whisper-v3.py .
+COPY whisper-v4.py .
 
 # Define porta padrão
 EXPOSE 8000
