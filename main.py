@@ -12,7 +12,6 @@ from fastapi.responses import StreamingResponse
 
 app = FastAPI(title="Whisper API - chunked")
 
-# CORS liberado (ajuste em produção)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -21,12 +20,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Rota de saúde para Render
 @app.get("/")
 def health_check():
     return {"status": "ok"}
 
-# Cache de modelos
 _loaded_models: Dict[str, Dict[str, Any]] = {}
 
 def get_model(model_size: str, device: str = "cpu"):
@@ -166,9 +163,3 @@ async def transcribe(
         media_type="text/plain; charset=utf-8",
         headers={"Content-Disposition": f'attachment; filename="{base_name}.txt"'},
     )
-
-# Inicialização para Render
-if __name__ == "__main__":
-    import uvicorn
-    port = int(os.environ.get("PORT", 8000))
-    uvicorn.run("whisper-v4:app", host="0.0.0.0", port=port)
