@@ -15,10 +15,10 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-COPY whisper-v4.py .
+COPY main.py .
 
 # Exponha a porta (opcional, só pra documentação)
 EXPOSE 8000
 
 # Comando de inicialização via Python
-CMD ["python", "whisper-v4.py"]
+CMD ["python", "main.py"]
