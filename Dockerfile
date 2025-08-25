@@ -15,6 +15,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
+COPY transcribe_api.py .
 COPY main.py .
 
 # Exponha a porta (opcional, só pra documentação)
